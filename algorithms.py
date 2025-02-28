@@ -25,7 +25,7 @@ def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
 
         if np.linalg.norm(r_p) < tol and np.linalg.norm(r_d) < tol and mu < tol:
             print("Converged")
-            return x
+            return x, x * c  # optimal solution, profit
 
         # Build the KKT Matrix
         KKT = np.block(
@@ -54,4 +54,4 @@ def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
         mu *= 0.1
 
     print("Maximum iterations reached")
-    return x
+    return x, x * c
