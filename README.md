@@ -39,9 +39,7 @@ of the number of trips.
    - $x_3$: Number of short-trip passengers
 2. **Objective Function**
    - Maximize profit:
-     $
-     z = 40x_1+20x_2+5x_3
-     $
+     $z = 40x_1+20x_2+5x_3$
 3. **Constraints**
    - Distance constraint:
      $$
