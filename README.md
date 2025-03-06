@@ -42,17 +42,11 @@ of the number of trips.
      $z = 40x_1+20x_2+5x_3$
 3. **Constraints**
    - Distance constraint:
-     $$
-     50x_1+30x_2+10x_3 \le 1000
-     $$
+     $50x_1+30x_2+10x_3 \le 1000$
    - Number of trips constraint:
-     $$
-     x_1+x_2+x_3 \le 20
-     $$
+     $x_1+x_2+x_3 \le 20$
    - Non-negativity:
-     $$
-     x_1, x_2, x_3 \ge 0
-     $$
+     $x_1, x_2, x_3 \ge 0$
 
 The cost vector `c` represents profit per passenger type, while `A` and `b`
 define the constraint matrix and bounds. The algorithm initializes `x` (the
@@ -65,15 +59,11 @@ Slack variables play a crucial role in transforming inequality constraints into
 equalities, making them easier to work with in a system of equations. So, an
 inequality constraint such as:
 
-$$
-\text{distance constraint}: 50x_1+30x_2+10x_3 \le 1000
-$$
+$\text{distance constraint}: 50x_1+30x_2+10x_3 \le 1000$
 
 would be rewritten using a slack variable `s_1` as:
 
-$$
-50x_1+30x_2+10x_3 +s_1 = 1000
-$$
+$50x_1+30x_2+10x_3 +s_1 = 1000$
 
 This helps to make sure that that the solution remains feasible while allowing
 us to incorporate constraints directly into our iterative update process.
@@ -89,19 +79,13 @@ At each iteration, the algorithm constructs three key residuals:
 1. **Dual Residual (r_d)**: Measures the difference between the gradient of the
    Lagrangian and the actual cost vector. If this is nonzero, it means the
    current solution is not optimal.
-   $$
-   r_d = A^T \lambda+s-c
-   $$
+   $r_d = A^T \lambda+s-c$
 2. **Primal Residual (r_p)**: Represents how much the current solution violates
    the constraints. Ideally, this should be zero when the algorithm converges.
-   $$
-   r_p = Ax -b
-   $$
+   $r_p = Ax -b$
 3. **Complementary Slackness Residual (r_c)**: Ensures that slack variables `s`
    and decision variables `x` remain balanced.
-   $$
-   r_c = XS - \mu
-   $$
+   $r_c = XS - \mu$
    Here $X$ and $S$ are diagonal matrices with `x` and `s`along the diagonal.
 
 These residuals form a system of equations that is solved at each iteration. The
