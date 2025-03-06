@@ -85,7 +85,7 @@ At each iteration, the algorithm constructs three key residuals:
    $r_p = Ax -b$
 3. **Complementary Slackness Residual (r_c)**: Ensures that slack variables `s`
    and decision variables `x` remain balanced.
-   $r_c = XS - \mu$\\
+   $r_c = XS - \mu$\
    Here $X$ and $S$ are diagonal matrices with `x` and `s`along the diagonal.
 
 These residuals form a system of equations that is solved at each iteration. The
