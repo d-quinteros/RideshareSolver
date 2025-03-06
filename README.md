@@ -26,9 +26,9 @@ such as total distance and number of trips.
 The objective of this problem is to maximize profit from providing transportation services, given constraints on distance and the total number of trips. Three trip types are available: long-distance (50km, $40 profit), medium-distance (30km, $20 profit), and short-distance (10km, $5 profit). The constraints are a maximum total distance of 1000 kilometers and a maximum of 20 total trips. The goal is to determine the optimal number of each trip type to maximize the total profit, subject to these constraints and the non-negativity of the number of trips.
 
 1. **Decision Variables**
-	* $x_1$: Number of long-trip passengers
-	* $x_2$: Number of medium-trip passengers
-	* $x_3$: Number of short-trip passengers
+	* $x_1: Number of long-trip passengers
+	* $x_2: Number of medium-trip passengers
+	* $x_3: Number of short-trip passengers
 2. **Objective Function**
 	* Maximize profit:
 	$$
