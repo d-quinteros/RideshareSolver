@@ -1,15 +1,16 @@
 import numpy as np
 
-
 def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
     """
-    Interior point algorithm
-    Params:
-        A: Constraint matrix
-        b: Constraint bounds
-        c: cost vector
+    An implementation of the interior point algorithm.
+    Parameters:
+        A: The matrix of constraint coefficients. 
+        b: The vector representing the constraint limits.
+        c: The vector of objective function coefficients, representing
+            the costs associated with each variable.
     Returns:
-        x: the solution
+        x: The solution vector (x), containing the optimal decision variable values,
+            and the optimal objective function value achieved with those values.
     """
     m, n = A.shape  # number of constraints, number of decision variables
     x = np.ones(n) * 0.5  # initial guess
