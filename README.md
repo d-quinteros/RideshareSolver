@@ -94,6 +94,24 @@ relationships between primal variables, dual variables, and slack variables.
 Solving this system updates all variables, guiding the solution toward
 optimality.
 
+$$
+\begin{bmatrix}
+0 & A^T & I\\
+A & 0 & 0\\
+S & 0 & X
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x\\
+\Delta \lambda\\
+\Delta s
+\end{bmatrix}=
+\begin{bmatrix}
+-r_d\\
+-r_p\\
+-r_c
+\end{bmatrix}
+$$
+
 ## Solving a Problem
 
 ## Ethical Analysis
