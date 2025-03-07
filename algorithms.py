@@ -8,9 +8,12 @@ def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
         b: The vector representing the constraint limits.
         c: The vector of objective function coefficients, representing
             the costs associated with each variable.
+        mu: The barrier parameter (initial value).
+        tol: Tolerance for convergence.
+        max_iter: Maximum number of iterations.
     Returns:
-        x: The solution vector (x), containing the optimal decision variable values,
-            and the optimal objective function value achieved with those values.
+        x: The solution vector, containing the optimal decision variable values.
+        x @ c: The optimal objective function value achieved with those decision variable values.
     """
     m, n = A.shape  # number of constraints, number of decision variables
     x = np.ones(n) * 0.5  # initial guess
