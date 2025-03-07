@@ -152,6 +152,10 @@ If these conditions are met, the algorithm terminates, returning the optimal sol
 
 ## Ethical Analysis
 
+Interior point methods are powerful optimization tools, but they’re not free from ethical concerns. Misuse can happen when these algorithms rely on already biased data or constraints. For example, in resource allocation, if the input data skews toward certain demographics, the algorithm can unintentionally reinforce and even worsen those disparities. Most of the time, this bias isn’t intentional; it comes from the data rather than the algorithm itself. But in some cases, intentional misuse is possible, like tweaking constraints or objective functions to favor certain groups.
+
+A real-world example of this kind of issue is the COMPAS risk assessment tool used to predict the potential for recidivism. While COMPAS doesn’t explicitly use linear programming, it still suffers from a similar problem: biased data leading to biased outcomes. Studies have shown that the algorithm disproportionately categorizes Black defendants as high-risk for reoffending. This happens because the historical data it was trained on reflects systemic biases in the justice system, like conflating arrests with convictions. The algorithm itself isn’t “racist,” but it learns patterns from biased data, reinforcing the same disparities. To address these issues, it’s crucial to audit data for biases, add fairness constraints to the optimization process, and keep the algorithm’s decisions as transparent as possible.
+
 ## Resources
 
 ### Libraries
