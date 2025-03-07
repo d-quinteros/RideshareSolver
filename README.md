@@ -31,7 +31,7 @@ But how does the algorithm know the direction in which to move the solution? To 
 This iterative process of minimizing the barrier function and optimizing the objective creates what is referred to as a "central path" through the interior of the feasible region, ultimately leading to the optimal solution.
 
 ## Solving a Problem
-### Step 0: Problem Setup
+### Step 1: Problem Setup
 
 The objective of this problem is to maximize profit from providing
 transportation services, given constraints on distance and the total number of
@@ -81,7 +81,7 @@ Lagrange multipliers help to measure how much the objective function would
 improve if a constraint were slightly relaxed. Conceptually, they represent the
 "pressure" that a constraint exerts on the solution
 
-### Iterative Optimization Process
+### Step 2: Iterative Optimization Process
 
 At each iteration, the algorithm constructs three key residuals:
 
@@ -95,13 +95,12 @@ At each iteration, the algorithm constructs three key residuals:
 3. **Complementary Slackness Residual (r_c)**: Ensures that slack variables `s`
    and decision variables `x` remain balanced.
    $r_c = XS - \mu$\
-   Here $X$ and $S$ are diagonal matrices with `x` and `s`along the diagonal.
+   Here $X$ and $S$ are diagonal matrices with `x` and `s`along the diagonal. These residuals form a system of equations that is solved at each iteration. 
 
-These residuals form a system of equations that is solved at each iteration. The
-algorithm builds the **KKT matrix**, a block matrix that encodes the
-relationships between primal variables, dual variables, and slack variables.
-Solving this system updates all variables, guiding the solution toward
-optimality.
+### Step 3: Solve the KKT System
+The algorithm builds the **KKT matrix**, a block matrix that encodes the relationships between primal variables, dual variables, and slack variables. Solving this system simultaneously updates all variables, guiding the solution toward optimality.
+
+The Karush-Kuhn-Tucker (KKT) matrix is constructed to solve for search directions:
 
 $$
 \begin{bmatrix}
@@ -120,6 +119,30 @@ S & 0 & X
 -r_c
 \end{bmatrix}
 $$
+
+To update the variables, we solve the linear system, which finds a direction that minimizes the residuals (i.e., the optimal trajectory).
+
+### Step 4: Newton’s Method & Variable Updates
+Blindly applying these variable updates can lead to infeasibility (e.g., negative values for decision variables). To prevent this, a step size is determined by taking the largest possible fraction of the update that keeps all variables positive. 
+
+$\alpha=0.99 \cdot \text{min}(1,\text{min}(-x/\Delta x))$
+$\beta=0.99 \cdot \text{min}(1,\text{min}(-s/\Delta s))$
+
+This ensures that the algorithm does not step outside the feasible region. Then we update the variables using our computed step sizes and search directions:
+
+$x = x + \alpha \Delta x$
+$\lambda = \lambda + \beta \Delta \lambda$
+$s = s + \beta \Delta s$
+
+To guide convergence, $\mu$ is gradually reduced by a factor of 0.1 in each iteration. This allows the solution to approach the optimal point smoothly.
+
+### Step 5: Convergence Check
+The algorithm checks for convergence using three conditions:
+-   The primal residual is close to zero (constraints are satisfied).
+-   The dual residual is close to zero (optimality conditions are met).
+-   The complementarity condition is sufficiently small (primal and dual variables are properly balanced).
+
+If these conditions are met, the algorithm terminates, returning the optimal solution. Otherwise, it iterates again.
 
 ## Ethical Analysis
 
