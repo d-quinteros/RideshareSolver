@@ -164,8 +164,9 @@ If these conditions are met, the algorithm terminates, returning the optimal sol
 
 [SciPy](https://scipy.org/): `verify_result.py`
 
-### Research links
+### Research Links
 <a id="1">[1]</a>
 “Interior-point method for LP - Cornell University Computational Optimization Open Textbook - Optimization Wiki.” https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
+
 <a id="2">[2]</a>
 N. Jorge and S. J. Wright, Eds., “Chapter 14: Linear Programming: Interior-Point Methods,” in Numerical Optimization, Springer New York, NY. [Online]. Available: https://pages.cs.wisc.edu/~swright/726/handouts/ip_h.pdf
