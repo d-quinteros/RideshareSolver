@@ -20,7 +20,15 @@ purpose. Utilizing IPM, we were able to find the optimum solution for the
 assignment of rides and profit maximization in terms of operational constraints
 such as total distance and number of trips.
 
-## Walkthrough
+## How It Works
+
+Interior Point Methods work by initializing a feasible, and most likely suboptimal, solution within the feasible region. They then iteratively move this solution through the interior of the feasible region, gradually converging to the optimal solution.
+
+To prevent the solution from violating any constraints, a barrier function is used to create a "force field" that keeps solutions away from constraint boundaries and within the feasible region. The strength of this barrier is controlled by a parameter $\mu$, which starts high and is progressively reduced, allowing the solution to get closer to the boundaries as it nears optimality.
+
+But how does the algorithm know the direction in which to move the solution? To find the optimal trajectory, the algorithm uses Newton's method to calculate a search direction, iteratively improving the solution. However, we can’t blindly move the solution in the direction of the optimal trajectory, as this could lead to infeasibility (e.g., negative values for decision variables). So, a step size is then determined to balance progress towards the objective with maintaining feasibility.
+
+This iterative process of minimizing the barrier function and optimizing the objective creates what is referred to as a "central path" through the interior of the feasible region, ultimately leading to the optimal solution.
 
 ## Solving a Problem
 ### Step 0: Problem Setup
