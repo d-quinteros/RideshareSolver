@@ -146,7 +146,7 @@ To guide convergence, $\mu$ is gradually reduced by a factor of 0.1 in each iter
 The algorithm checks for convergence using three conditions:
 -   The primal residual is close to zero (constraints are satisfied).
 -   The dual residual is close to zero (optimality conditions are met).
--   The complementarity condition is sufficiently small (primal and dual variables are properly balanced).
+-   The $\mu$ parameter is close to zero.
 
 If these conditions are met, the algorithm terminates, returning the optimal solution. Otherwise, it iterates again.
 
