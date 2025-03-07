@@ -88,19 +88,25 @@ At each iteration, the algorithm constructs three key residuals:
 1. **Dual Residual (r_d)**: Measures the difference between the gradient of the
    Lagrangian and the actual cost vector. If this is nonzero, it means the
    current solution is not optimal.
+
    $r_d = A^T \lambda+s-c$
-2. **Primal Residual (r_p)**: Represents how much the current solution violates
+   
+3. **Primal Residual (r_p)**: Represents how much the current solution violates
    the constraints. Ideally, this should be zero when the algorithm converges.
+   
    $r_p = Ax -b$
-3. **Complementary Slackness Residual (r_c)**: Ensures that slack variables `s`
+   
+5. **Complementary Slackness Residual (r_c)**: Ensures that slack variables `s`
    and decision variables `x` remain balanced.
-   $r_c = XS - \mu$\
-   Here $X$ and $S$ are diagonal matrices with `x` and `s`along the diagonal. These residuals form a system of equations that is solved at each iteration. 
+   
+   $r_c = XS - \mu$
+   
+Here $X$ and $S$ are diagonal matrices with `x` and `s`along the diagonal. These residuals form a system of equations that is solved at each iteration. 
 
 ### Step 3: Solve the KKT System
-The algorithm builds the **KKT matrix**, a block matrix that encodes the relationships between primal variables, dual variables, and slack variables. Solving this system simultaneously updates all variables, guiding the solution toward optimality.
+The algorithm builds the Karush-Kuhn-Tucker (KKT), a block matrix that encodes the relationships between primal variables, dual variables, and slack variables. Solving this system simultaneously updates all variables, guiding the solution toward optimality.
 
-The Karush-Kuhn-Tucker (KKT) matrix is constructed to solve for search directions:
+The KKT matrix is constructed to solve for search directions:
 
 $$
 \begin{bmatrix}
@@ -125,13 +131,13 @@ To update the variables, we solve the linear system, which finds a direction tha
 ### Step 4: Newton’s Method & Variable Updates
 Blindly applying these variable updates can lead to infeasibility (e.g., negative values for decision variables). To prevent this, a step size is determined by taking the largest possible fraction of the update that keeps all variables positive. 
 
-$\alpha=0.99 \cdot \text{min}(1,\text{min}(-x/\Delta x))$
+$\alpha=0.99 \cdot \text{min}(1,\text{min}(-x/\Delta x))$\
 $\beta=0.99 \cdot \text{min}(1,\text{min}(-s/\Delta s))$
 
 This ensures that the algorithm does not step outside the feasible region. Then we update the variables using our computed step sizes and search directions:
 
-$x = x + \alpha \Delta x$
-$\lambda = \lambda + \beta \Delta \lambda$
+$x = x + \alpha \Delta x$\
+$\lambda = \lambda + \beta \Delta \lambda$\
 $s = s + \beta \Delta s$
 
 To guide convergence, $\mu$ is gradually reduced by a factor of 0.1 in each iteration. This allows the solution to approach the optimal point smoothly.
