@@ -165,6 +165,5 @@ If these conditions are met, the algorithm terminates, returning the optimal sol
 [SciPy](https://scipy.org/): `verify_result.py`
 
 ### Research links
-
-[Cornell's interior point method for LP](https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP)
-(Lauterio, Thakur, and Shenoy)
+<a id="1">[1]</a>
+“Interior-point method for LP - Cornell University Computational Optimization Open Textbook - Optimization Wiki.” https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
