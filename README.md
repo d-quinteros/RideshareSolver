@@ -22,6 +22,7 @@ such as total distance and number of trips.
 
 ## Walkthrough
 
+## Solving a Problem
 ### Step 0: Problem Setup
 
 The objective of this problem is to maximize profit from providing
@@ -111,8 +112,6 @@ S & 0 & X
 -r_c
 \end{bmatrix}
 $$
-
-## Solving a Problem
 
 ## Ethical Analysis
 
