@@ -35,10 +35,10 @@ This iterative process of minimizing the barrier function and optimizing the obj
 
 The objective of this problem is to maximize profit from providing
 transportation services, given constraints on distance and the total number of
-trips. Three trip types are available: long-distance (50km, $40 profit),
-medium-distance (30km, $20 profit), and short-distance (10km, $5 profit). The
+trips. Three passenger types are available: long-distance passenger (50km, $40 profit),
+medium-distance passenger (30km, $20 profit), and short-distance passenger (10km, $5 profit). The
 constraints are a maximum total distance of 1000 kilometers and a maximum of 20
-total trips. The goal is to determine the optimal number of each trip type to
+total trips. The goal is to determine the optimal number of each passenger type to
 maximize the total profit, subject to these constraints and the non-negativity
 of the number of trips.
 
