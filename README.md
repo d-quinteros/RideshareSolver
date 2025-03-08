@@ -150,6 +150,13 @@ The algorithm checks for convergence using three conditions:
 
 If these conditions are met, the algorithm terminates, returning the optimal solution. Otherwise, it iterates again.
 
+### Design Decisions
+- Using $r_c$ Instead of a Log Barrier Function: Traditional methods use a logarithmic barrier function to enforce positivity constraints, but this requires careful tuning of the barrier parameter. Instead, we use the residual $r_c$ directly, keeping the update process simpler. 
+
+- Reduction of $\mu$: Rather than adjusting $\mu$ based on problem progress, we reduce it by a fixed factor each iteration. This helps to avoid unnecessary parameter tuning and keeps behavior predictable.
+
+- Simplified Line Search for Step Size: Instead of using complex backtracking line search methods to fine-tune step sizes, we take a heuristic approach that maintains feasibility with less computation. This results in slightly less precision, but makes up for it in code simplification.
+
 ## Ethical Analysis
 
 Interior point methods are powerful optimization tools, but they’re not free from ethical concerns. Misuse can happen when these algorithms rely on already biased data or constraints. For example, in resource allocation, if the input data skews toward certain demographics, the algorithm can unintentionally reinforce and even worsen those disparities. Most of the time, this bias isn’t intentional; it comes from the data rather than the algorithm itself<a id="3">[3]</a>. But in some cases, intentional misuse is possible, like tweaking constraints or objective functions to favor certain groups.
