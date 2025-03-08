@@ -32,6 +32,8 @@ operational constraints such as total distance and number of trips.
 
 ## How It Works
 
+![Interior Point Visualization](visualization.png)
+
 Interior Point Methods work by initializing a feasible, and most likely
 suboptimal, solution within the feasible region. They then iteratively move this
 solution through the interior of the feasible region, gradually converging to
@@ -189,11 +191,20 @@ If these conditions are met, the algorithm terminates, returning the optimal
 solution. Otherwise, it iterates again.
 
 ### Design Decisions
-- Using $r_c$ Instead of a Log Barrier Function: Traditional methods use a logarithmic barrier function to enforce positivity constraints, but this requires careful tuning of the barrier parameter. Instead, we use the residual $r_c$ directly, keeping the update process simpler. 
 
-- Reduction of $\mu$: Rather than adjusting $\mu$ based on problem progress, we reduce it by a fixed factor each iteration. This helps to avoid unnecessary parameter tuning and keeps behavior predictable.
+- Using $r_c$ Instead of a Log Barrier Function: Traditional methods use a
+  logarithmic barrier function to enforce positivity constraints, but this
+  requires careful tuning of the barrier parameter. Instead, we use the residual
+  $r_c$ directly, keeping the update process simpler.
 
-- Simplified Line Search for Step Size: Instead of using complex backtracking line search methods to fine-tune step sizes, we take a heuristic approach that maintains feasibility with less computation. This results in slightly less precision, but makes up for it in code simplification.
+- Reduction of $\mu$: Rather than adjusting $\mu$ based on problem progress, we
+  reduce it by a fixed factor each iteration. This helps to avoid unnecessary
+  parameter tuning and keeps behavior predictable.
+
+- Simplified Line Search for Step Size: Instead of using complex backtracking
+  line search methods to fine-tune step sizes, we take a heuristic approach that
+  maintains feasibility with less computation. This results in slightly less
+  precision, but makes up for it in code simplification.
 
 ## Ethical Analysis
 
