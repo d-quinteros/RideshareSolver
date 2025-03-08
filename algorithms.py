@@ -2,6 +2,9 @@
 
 import numpy as np
 
+MUS = []
+ITERATES = []
+
 
 def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
     """
@@ -18,6 +21,7 @@ def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
         x: The solution vector, containing the decision variable values.
         x * c: The objective function value achieved with those decision variable values.
     """
+    global MUS, ITERATES
     m, n = A.shape  # number of constraints, number of decision variables
     x = np.ones(n) * 0.5  # initial guess for the primal variables (decision variables)
     s = np.ones(n)  # initial guess for the slack variables
@@ -32,6 +36,8 @@ def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
 
         # Check for convergence
         if np.linalg.norm(r_p) < tol and np.linalg.norm(r_d) < tol and mu < tol:
+            ITERATES.append(x.copy())
+            MUS.append(mu)
             print("Converged")
             return x, x * c  # optimal solution, profit
 
@@ -64,8 +70,14 @@ def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
         lam += beta * delta_lam
         s += beta * delta_s
 
+        MUS.append(mu)
+
         # Reduce the barrier parameter
         mu *= 0.1
+
+        ITERATES.append(x.copy())
+
+        print(mu)
 
     print("Maximum iterations reached")
     return x, x * c
