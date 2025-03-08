@@ -1,8 +1,13 @@
+"""Main file to run interior point method to the ride share problem"""
+
 from applications import ride_share_problem
 from algorithms import interior_point
 
 
 def main():
+    """
+    main function to run the interior point method to the ride share problem.
+    """
     A, b, c = ride_share_problem()
     x_opt, profits = interior_point(A, b, c)
     print("Optimal solution:", x_opt)

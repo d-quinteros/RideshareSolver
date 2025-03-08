@@ -1,10 +1,13 @@
+"""Interior point method algorithm implementation"""
+
 import numpy as np
+
 
 def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
     """
     An implementation of the interior point algorithm.
     Parameters:
-        A: The matrix of constraint coefficients. 
+        A: The matrix of constraint coefficients.
         b: The vector representing the constraint limits.
         c: The vector of objective function coefficients, representing the costs associated
             with each variable.
@@ -27,7 +30,7 @@ def interior_point(A, b, c, mu=1, tol=1e-6, max_iter=100):
         r_p = A @ x - b  # primal residual
         r_c = X @ S @ np.ones(n) - mu * np.ones(n)  # complementarity residual
 
-         # Check for convergence
+        # Check for convergence
         if np.linalg.norm(r_p) < tol and np.linalg.norm(r_d) < tol and mu < tol:
             print("Converged")
             return x, x * c  # optimal solution, profit

@@ -1,3 +1,5 @@
+"""Verification of the interior point method algorithm using scipy"""
+
 from scipy.optimize import linprog
 
 # Coefficients of the objective function (maximize profit)
